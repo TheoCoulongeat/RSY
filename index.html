@@ -220,8 +220,8 @@ footer img{width:40px;height:40px}
     </div>
     <div>
       <div class="film tall" data-film>
-        <video controls preload="metadata" playsinline poster="images/brand-film-poster.jpg">
-          <source src="media/rsy-brand-film.mp4" type="video/mp4">
+        <video controls preload="metadata" playsinline poster="brand-film-poster.jpg">
+          <source src="rsy-brand-film.mp4" type="video/mp4">
         </video>
         <div class="ph"><div class="play"><svg width="26" height="26" viewBox="0 0 26 26"><path d="M8 5l14 8-14 8z" fill="#fff"/></svg></div><strong>RSY brand film</strong><small>French &amp; English subtitles</small></div>
       </div>
@@ -263,8 +263,8 @@ footer img{width:40px;height:40px}
     <div class="fleet" id="boats"></div>
     <div class="adrow">
       <div class="film tall" data-film>
-        <video controls preload="metadata" playsinline poster="images/hull-ad-poster.jpg">
-          <source src="media/rsy-hull-ad.mp4" type="video/mp4">
+        <video controls preload="metadata" playsinline poster="hull-ad-poster.jpg">
+          <source src="rsy-hull-ad.mp4" type="video/mp4">
         </video>
         <div class="ph"><div class="play"><svg width="26" height="26" viewBox="0 0 26 26"><path d="M8 5l14 8-14 8z" fill="#fff"/></svg></div><strong>RSY hull ad</strong><small>French &amp; English subtitles</small></div>
       </div>
@@ -393,15 +393,15 @@ footer img{width:40px;height:40px}
 <script>
 {
 const boats=[
- {img:"images/athos-6m-feux.jpg",n:"Aramis",r:"Range A · Fishing",t:"The faithful companion of anglers",d:"An open, stable hull for recreational fishing on lakes, rivers and calm coastal waters. Simple to maintain, easy to tow and built to last.",f:["Wide, stable deck for casting","Robust composite hull with wood trim","Designed for an outboard engine"],p:"3,000",v:"spot-aramis",kind:"a"},
- {img:"images/portos-16m.jpg",n:"Porthos",r:"Range B · Leisure cruising",t:"Generous and versatile, like its namesake",d:"Our best-seller for family outings at sea, on lakes and on rivers. A bowrider with room for everyone and a windscreen that keeps the spray away.",f:["Bow and stern seating for the family","Windscreen and console","At home on sea, lake or river"],p:"8,500",v:"spot-porthos",kind:"b"},
- {img:"images/aramis-40m.jpg",fit:1,n:"Athos",r:"Range C · Premium cruising",t:"The noblest of the three",d:"A premium cruiser for days at sea and nights at anchor. Comfort comes first: a cabin, refined wood finishes and a hull that softens the chop.",f:["Cabin with berth","Hand-finished marine wood","Our most comfortable ride"],p:"21,000",v:"spot-athos",kind:"c"}];
+ {img:"athos-6m-feux.jpg",n:"Aramis",r:"Range A · Fishing",t:"The faithful companion of anglers",d:"An open, stable hull for recreational fishing on lakes, rivers and calm coastal waters. Simple to maintain, easy to tow and built to last.",f:["Wide, stable deck for casting","Robust composite hull with wood trim","Designed for an outboard engine"],p:"3,000",v:"spot-aramis",kind:"a"},
+ {img:"portos-16m.jpg",n:"Porthos",r:"Range B · Leisure cruising",t:"Generous and versatile, like its namesake",d:"Our best-seller for family outings at sea, on lakes and on rivers. A bowrider with room for everyone and a windscreen that keeps the spray away.",f:["Bow and stern seating for the family","Windscreen and console","At home on sea, lake or river"],p:"8,500",v:"spot-porthos",kind:"b"},
+ {img:"aramis-40m.jpg",fit:1,n:"Athos",r:"Range C · Premium cruising",t:"The noblest of the three",d:"A premium cruiser for days at sea and nights at anchor. Comfort comes first: a cabin, refined wood finishes and a hull that softens the chop.",f:["Cabin with berth","Hand-finished marine wood","Our most comfortable ride"],p:"21,000",v:"spot-athos",kind:"c"}];
 const hullSVG=k=>{
  const cab=k==="c"?'<path d="M95 70 L112 46 L222 46 L238 70Z" fill="#fff"/><path d="M118 52 L165 52 L165 66 L108 66Z M172 52 L218 52 L230 66 L172 66Z" fill="#2c48a8"/>'
   :k==="b"?'<path d="M140 70 L156 50 L205 50 L200 70Z" fill="#dfe8ff"/><path d="M160 55 L198 55 L196 66 L153 66Z" fill="#2c48a8"/>'
   :'<rect x="235" y="52" width="16" height="18" fill="#D7263D"/><path d="M110 70 L118 18" stroke="#8aa0d8" stroke-width="3"/>';
  return '<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect y="108" width="320" height="72" fill="#3a5bc2"/><path d="M0 112 q20-6 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" stroke="#9fb5ef" stroke-width="2" fill="none"/><ellipse cx="160" cy="112" rx="120" ry="7" fill="#0b1640" opacity=".35"/><path d="M45 70 L280 70 C270 92 255 104 232 106 L80 106 C64 101 52 88 45 70Z" fill="#fff"/><path d="M45 70 L280 70 L276 77 L48 77Z" fill="#142464"/><path d="M60 92 C130 97 200 97 268 90" stroke="#D7263D" stroke-width="3" fill="none"/>'+cab+'</svg>'};
-const film=(id,label)=>'<div class="film" data-film><video controls preload="metadata" playsinline><source src="media/'+id+'.mp4" type="video/mp4"><track kind="subtitles" srclang="en" label="English" src="media/'+id+'.en.vtt" default></video><div class="ph"><div class="play"><svg width="22" height="22" viewBox="0 0 26 26"><path d="M8 5l14 8-14 8z" fill="#fff"/></svg></div><strong>'+label+' advertising spot</strong><small>In French, English subtitles</small></div></div>';
+const film=(id,label)=>'<div class="film" data-film><video controls preload="metadata" playsinline><source src="'+id+'.mp4" type="video/mp4"><track kind="subtitles" srclang="en" label="English" src="'+id+'.en.vtt" default></video><div class="ph"><div class="play"><svg width="22" height="22" viewBox="0 0 26 26"><path d="M8 5l14 8-14 8z" fill="#fff"/></svg></div><strong>'+label+' advertising spot</strong><small>In French, English subtitles</small></div></div>';
 document.getElementById("boats").innerHTML=boats.map(b=>'<article class="boat"><div class="art">'+(b.img?'<img src="'+b.img+'" alt="'+b.n+' hull by RSY"'+(b.fit?' class="fit"':'')+' loading="lazy">':hullSVG(b.kind))+'</div><div class="body"><span class="tag">'+b.r+'</span><h3>'+b.n+'</h3><strong>'+b.t+'</strong><p style="color:var(--mute);margin:0">'+b.d+'</p><ul>'+b.f.map(x=>'<li>'+x+'</li>').join("")+'</ul>'+'<p class="price">Dealer price €'+b.p+' <span>excl. VAT, 2026</span></p></div></article>').join("");
 
 const events=[
@@ -416,7 +416,7 @@ const scenes=[
 const pic=(c,k)=>k==="ws"?'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="300" fill="'+c+'"/><rect y="220" width="400" height="80" fill="#8fa3d1"/><g fill="#142464"><rect x="40" y="60" width="18" height="160"/><rect x="40" y="60" width="120" height="14"/><rect x="150" y="74" width="10" height="50"/></g><path d="M90 200 L330 200 C318 228 300 238 276 240 L126 240 C108 235 96 222 90 200Z" fill="#fff"/><path d="M90 200 L330 200 L326 208 L93 208Z" fill="#142464"/><circle cx="155" cy="128" r="10" fill="#D7263D"/></svg>'
  :'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="300" fill="'+c+'"/><path d="M0 170 C90 130 170 150 250 120 C320 95 360 120 400 110 L400 190 L0 190Z" fill="#5a78d1"/><rect y="185" width="400" height="115" fill="#2c48a8"/>'+hullSVG(k).replace('<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">','<g transform="translate(40 110)">').replace('<rect y="108" width="320" height="72" fill="#3a5bc2"/>','').replace('</svg>','</g>')+'</svg>';
 const gal=document.getElementById("gal");
-const photos=[["Aramis – 6 m, launch day","images/athos-6m-feux.jpg"],["Aramis – 6 m at speed","images/athos-6m-run.jpg"],["Aramis – 6 m in open water","images/athos-6m-sea.jpg"],["Aramis – 6 m at the pontoon","images/athos-6m-marina.jpg"],["Portos – 16 m","images/portos-16m.jpg"],["Portos – 16 m under way","images/portos-16m-sea.jpg"],["Portos – 16 m at anchor","images/portos-16m-city.jpg"],["Athos – 40 m","images/aramis-40m.jpg",1],["Athos – 40 m at sunset","images/aramis-40m-sunset.jpg"],["Athos – 40 m under way","images/aramis-40m-sea.jpg"]];
+const photos=[["Aramis – 6 m, launch day","athos-6m-feux.jpg"],["Aramis – 6 m at speed","athos-6m-run.jpg"],["Aramis – 6 m in open water","athos-6m-sea.jpg"],["Aramis – 6 m at the pontoon","athos-6m-marina.jpg"],["Portos – 16 m","portos-16m.jpg"],["Portos – 16 m under way","portos-16m-sea.jpg"],["Portos – 16 m at anchor","portos-16m-city.jpg"],["Athos – 40 m","aramis-40m.jpg",1],["Athos – 40 m at sunset","aramis-40m-sunset.jpg"],["Athos – 40 m under way","aramis-40m-sea.jpg"]];
 gal.innerHTML=photos.map(p=>'<figure><div class="pic"><img src="'+p[1]+'" alt="'+p[0]+'"'+(p[2]?' class="fit"':'')+' loading="lazy"></div><figcaption>'+p[0]+'</figcaption></figure>').join("");
 const step=d=>{const f=gal.querySelector("figure");gal.scrollBy({left:d*((f?f.offsetWidth:300)+16),behavior:"smooth"})};
 document.getElementById("prev").addEventListener("click",()=>step(-1));
