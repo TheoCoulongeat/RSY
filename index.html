@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RSY Shipyard</title>
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE occasion: a Mediterranean shipyard's public website, proud and calm
+   IDEA a yacht builder's brochure, navy and sail-white like the RSY anchor badge
+   PICTURE a layered harbour scene off Toulon: Mont Faron, the bay, the three musketeer hulls at sea
+   COLOUR navy #142464 dominant, sail white #ECF4FF support, signal-flag red #D7263D accent
+   TYPE Bodoni Moda (the badge's serif capitals) + Manrope
+   LAYOUT sticky nav; full-bleed scene with title in its lower corner; bands alternating navy and white; stacks under 600px */
+:root{color-scheme:light dark;--navy:#142464;--ice:#ECF4FF;--red:#D7263D;--bg:light-dark(#ffffff,#0a1230);--ink:light-dark(#0f1a40,#e8efff);--soft:light-dark(#ECF4FF,#111c45);--line:light-dark(#cdd9f0,#26346b);--mute:light-dark(#46557f,#a9b7de)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Manrope,system-ui,sans-serif;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:"Bodoni Moda",Georgia,serif;line-height:1.08;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h2{font-size:clamp(32px,4.4vw,48px)}
+h3{font-size:24px}
+p{margin:0 0 12px;max-width:66ch}
+.band{padding:clamp(40px,6vw,88px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+.navy{background:var(--navy);color:var(--ice)}
+.navy .lead,.navy p{color:#cfdcf7}
+.soft{background:var(--soft)}
+.lead{font-size:18px;color:var(--mute);margin-top:14px}
+nav{position:sticky;top:0;z-index:20;background:var(--navy);color:var(--ice);display:flex;align-items:center;gap:18px;padding:8px max(5vw,16px);flex-wrap:wrap}
+nav .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:"Bodoni Moda",serif;font-size:20px;font-weight:700}
+nav .brand img{width:44px;height:44px}
+nav ul{display:flex;flex-wrap:wrap;gap:4px 18px;list-style:none;margin:0 0 0 auto;padding:0}
+nav ul a{text-decoration:none;font-weight:500;font-size:15px;padding:10px 0;display:inline-block;border-bottom:2px solid transparent}
+nav ul a:hover,nav ul a:focus-visible{border-color:var(--red)}
+.hero{position:relative;background:var(--navy);color:var(--ice);min-height:min(78svh,720px);display:grid;align-items:end;overflow:hidden}
+.hero svg.scene{position:absolute;inset:0;width:100%;height:100%}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,27,82,.92) 0%,rgba(14,27,82,.78) 38%,rgba(14,27,82,0) 68%);pointer-events:none}
+.hero .txt{position:relative;padding:0 max(5vw,16px) clamp(28px,5vw,56px);max-width:680px}
+.hero h1,.hero p{text-shadow:0 2px 14px rgba(8,16,52,.6)}
+.hero h1{font-size:clamp(44px,7vw,84px)}
+.hero p{font-size:19px;color:#e2ebff;margin-top:14px}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 22px;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid currentColor;cursor:pointer;font:inherit;font-weight:700;background:none;color:inherit}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.btn:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(11em,1fr));gap:18px;margin-top:30px}
+.figs b{display:block;font-family:"Bodoni Moda",serif;font-size:clamp(34px,4vw,46px);line-height:1}
+.figs span{color:var(--mute);font-size:15px}
+.navy .figs span{color:#b9c8ec}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.values{display:grid;grid-template-columns:repeat(auto-fit,minmax(14em,1fr));gap:16px;margin-top:28px}
+.val{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px}
+.val h3{font-size:21px;margin-bottom:6px}
+.val p{color:var(--mute);margin:0;font-size:15px}
+blockquote{margin:22px 0 0;padding:0 0 0 18px;border-left:3px solid var(--red);font-family:"Bodoni Moda",serif;font-size:21px;line-height:1.4;max-width:60ch}
+blockquote cite{display:block;font:500 14px Manrope,sans-serif;margin-top:8px;color:var(--mute);font-style:normal}
+.film{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#0b1640;box-shadow:0 0 0 1px var(--line)}
+.film.tall{aspect-ratio:4/5;max-width:420px;margin-inline:auto}
+.adrow{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center;margin-top:40px}
+@media(max-width:760px){.adrow{grid-template-columns:1fr}}
+.film video{width:100%;height:100%;display:block;background:#000}
+.film .ph{position:absolute;inset:0;display:none;place-content:center;justify-items:center;text-align:center;gap:10px;color:#dfe8ff;padding:16px;background:radial-gradient(circle at 50% 40%,#22358a,#0b1640 70%)}
+.film.missing .ph{display:grid}
+.film.missing video{visibility:hidden}
+.ph .play{width:64px;height:64px;border-radius:50%;background:var(--red);display:grid;place-items:center}
+.ph small{font-size:13px;color:#b9c8ec}
+.cap{font-size:14px;color:var(--mute);margin-top:8px}
+.navy .cap{color:#b9c8ec}
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(15em,1fr));gap:16px;margin-top:26px}
+.pole{border-top:3px solid var(--navy);padding-top:12px}
+:root[data-theme=dark] .pole{border-color:var(--ice)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .pole{border-color:var(--ice)}}
+.pole h3{font-size:19px;margin-bottom:6px}
+.pole li{margin:4px 0}
+.pole ul{list-style:none;padding:0;margin:0}
+.pole small{color:var(--mute);display:block;font-size:13.5px}
+.fleet{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:30px}
+.boat{background:var(--bg);color:var(--ink);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.boat .art{background:linear-gradient(#cfe0ff,#ecf4ff);aspect-ratio:16/9}
+.boat .art svg,.boat .art img{width:100%;height:100%;display:block;object-fit:cover}
+.boat .art img.fit,.gal .pic img.fit{object-fit:contain;background:#14213d}
+.boat .art{position:relative;overflow:hidden}.boat .art img{position:absolute;inset:0}
+.boat .body{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.tag{display:inline-block;font-size:13px;font-weight:700;color:var(--red)}
+.boat ul{margin:0;padding-left:18px;color:var(--mute);font-size:15px}
+.price{font-weight:700;margin-top:auto}
+.boat .price{color:var(--ink)}
+.price span{font-weight:400;color:var(--mute);font-size:14px}
+.next{margin-top:22px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;border:1px dashed #6f86c9;border-radius:14px;padding:16px 20px}
+.next b{font-family:"Bodoni Moda",serif;font-size:22px}
+.events{display:grid;gap:16px;margin-top:28px}
+.ev{display:grid;grid-template-columns:7.5em minmax(0,1fr) auto;gap:20px;align-items:start;border-bottom:1px solid var(--line);padding:16px 0}
+.ev .d{font-family:"Bodoni Moda",serif;font-size:26px;line-height:1.05;color:var(--red)}
+.ev .d small{display:block;font:500 14px Manrope,sans-serif;color:var(--mute)}
+.ev h3{font-size:22px;margin-bottom:4px}
+.ev .where{font-size:14px;font-weight:700;white-space:nowrap}
+.gal{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;margin-top:26px}
+.gal figure{flex:0 0 min(78vw,380px);scroll-snap-align:start;margin:0}
+.gal .pic{aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#cfe0ff}
+.gal .pic svg,.gal .pic img{width:100%;height:100%;object-fit:cover;display:block}
+.gal figcaption{font-size:14px;color:var(--mute);margin-top:8px}
+.galbar{display:flex;gap:10px;justify-content:flex-end;margin-top:-6px}
+.round{width:46px;height:46px;border-radius:50%;border:2px solid var(--line);background:var(--bg);color:var(--ink);font-size:20px;cursor:pointer}
+.press{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:28px}
+.partners{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:28px}
+.partners .art2 ul{margin:0;padding-left:1.1em;color:var(--mute);font-size:15px}
+.partners .tag2{font-size:13px;font-weight:700;color:var(--red)}
+.art2{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.art2 time{font-size:14px;color:var(--red);font-weight:700}
+.art2 h3{font-size:22px}
+.art2 p{color:var(--mute);font-size:15px;margin:0}
+details summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center}
+details[open] summary{margin-bottom:6px}
+.social{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.nets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+.net{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid #3a4d96;border-radius:12px;text-decoration:none;min-height:56px}
+.net svg{width:26px;height:26px;flex:none}
+.net small{display:block;color:#b9c8ec;font-size:13px}
+form{display:grid;gap:12px}
+label{font-weight:700;font-size:14px;display:grid;gap:6px}
+input,select,textarea{font:16px Manrope,sans-serif;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+textarea{min-height:110px;resize:vertical}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.ok{display:none;padding:12px 14px;border-radius:10px;background:#1f8a5b;color:#fff;font-weight:700}
+.ok.show{display:block}
+.contact{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px)}
+.card{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--bg)}
+dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 16px;margin:14px 0 0}
+dt{font-weight:700}dd{margin:0;color:var(--mute)}
+footer{background:#0b1640;color:#cfdcf7;padding:28px max(5vw,16px);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+footer img{width:40px;height:40px}
+@media(max-width:1100px){.hero{display:block;min-height:0}.hero svg.scene{position:relative;display:block;height:clamp(220px,42vw,380px)}.hero::before{display:none}.hero .txt{padding-top:26px;max-width:none}}
+@media(max-width:900px){.fleet,.press,.partners{grid-template-columns:minmax(0,1fr)}.two,.social,.contact{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){nav ul{margin:0;gap:2px 14px}nav ul a{font-size:14px}.ev{grid-template-columns:minmax(0,1fr)}.ev .where{white-space:normal}.row2,.nets{grid-template-columns:minmax(0,1fr)}.hero{min-height:0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sea{animation:none!important}}
+.sea{animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translateX(-40px)}}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <a class="brand" href="#top"><img src="logo.png" alt="RSY anchor logo">RSY Shipyard</a>
+  <ul>
+    <li><a href="#about">About us</a></li>
+    <li><a href="#fleet">Our boats</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#partners">Partners</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#press">Press</a></li>
+    <li><a href="#social">Community</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <svg class="scene" viewBox="0 0 1600 800" preserveAspectRatio="xMaxYMax slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f1d55"/><stop offset="1" stop-color="#3a5bc2"/></linearGradient>
+      <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c48a8"/><stop offset="1" stop-color="#101f5c"/></linearGradient>
+      <linearGradient id="hull" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#c9d8f6"/></linearGradient>
+    </defs>
+    <rect width="1600" height="800" fill="url(#sky)"/>
+    <circle cx="1270" cy="210" r="70" fill="#ffe7b0" opacity=".9"/>
+    <path d="M0 470 C180 380 300 400 430 360 C560 320 650 250 820 300 C980 345 1080 330 1220 380 C1380 430 1500 400 1600 420 L1600 520 L0 520Z" fill="#23398f"/>
+    <path d="M0 500 C220 450 360 470 520 440 C700 405 860 430 1040 455 C1220 480 1420 450 1600 470 L1600 540 L0 540Z" fill="#1b2f7c"/>
+    <rect y="515" width="1600" height="285" fill="url(#sea)"/>
+    <g class="sea" fill="none" stroke="#7f9be6" stroke-width="3" opacity=".5">
+      <path d="M-50 580 q40-14 80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0"/>
+      <path d="M-50 660 q50-16 100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0"/>
+      <path d="M-50 740 q60-18 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0"/>
+    </g>
+    <!-- Athos, large -->
+    <g transform="translate(1010 520)">
+      <ellipse cx="250" cy="96" rx="300" ry="16" fill="#0b1640" opacity=".45"/>
+      <path d="M0 40 L520 40 C500 80 470 96 430 100 L70 100 C40 92 15 70 0 40Z" fill="url(#hull)"/>
+      <path d="M0 40 L520 40 L512 52 L6 52Z" fill="#142464"/>
+      <path d="M20 76 C200 84 360 84 490 74" stroke="#D7263D" stroke-width="5" fill="none"/>
+      <path d="M120 40 L150 -10 L380 -10 L420 40Z" fill="#ffffff"/>
+      <path d="M160 -2 L250 -2 L250 26 L148 26Z M265 -2 L365 -2 L392 26 L265 26Z" fill="#2c48a8"/>
+      <path d="M190 -10 L215 -40 L330 -40 L345 -10Z" fill="#dfe8ff"/>
+      <path d="M520 40 C500 80 470 96 430 100 L470 100 C505 88 525 64 530 40Z" fill="#a9bde8"/>
+    </g>
+    <!-- Porthos, middle -->
+    <g transform="translate(905 566) scale(.24)">
+      <ellipse cx="220" cy="92" rx="250" ry="14" fill="#0b1640" opacity=".4"/>
+      <path d="M0 40 L440 40 C420 76 395 92 360 96 L60 96 C35 88 14 68 0 40Z" fill="url(#hull)"/>
+      <path d="M0 40 L440 40 L433 51 L5 51Z" fill="#142464"/>
+      <path d="M170 40 L200 0 L300 0 L290 40Z" fill="#dfe8ff"/>
+      <path d="M205 8 L285 8 L280 30 L192 30Z" fill="#2c48a8"/>
+    </g>
+    <!-- Aramis, small far -->
+    <g transform="translate(1545 552) scale(.12)">
+      <path d="M0 40 L380 40 C362 74 340 90 310 94 L50 94 C30 86 12 66 0 40Z" fill="url(#hull)"/>
+      <path d="M0 40 L380 40 L374 50 L4 50Z" fill="#142464"/>
+      <rect x="300" y="10" width="26" height="30" fill="#D7263D"/>
+      <path d="M120 40 L130 -60" stroke="#dfe8ff" stroke-width="6"/>
+    </g>
+  </svg>
+  <div class="txt">
+    <h1>Beyond the Waves</h1>
+    <p>RSY designs and builds composite boat hulls in Toulon for dealers across France and Europe. Three ranges, one crew, all for one.</p>
+    <div class="btns"><a class="btn red" href="#fleet">Discover our boats</a><a class="btn" href="#contact">Become a dealer</a></div>
+  </div>
+</header>
+
+<section class="band" id="about">
+  <div class="wrap two">
+    <div>
+      <h2>Who we are</h2>
+      <p class="lead">RSY (Rodriguez Ship Yard) is a shipyard on the Mediterranean coast. We mould and finish composite hulls for leisure boating, from fishing dinghies to premium cruisers, and we sell them to boat dealers who bring them to sailors.</p>
+      <p>Our synopsis is simple: a solid French shipyard, a range named after the Three Musketeers, and a team of ten partners who run the company together. Every hull leaves our workshops with the same promise written on our badge: <strong>Beyond the Waves</strong>, a boat that takes you further, safely and in comfort.</p>
+      <blockquote>“We act with autonomy every day in our own team, we cooperate across all teams, and we decide together, by vote, on everything that shapes our common future.”<cite>Sara Rodriguez, CEO of RSY</cite></blockquote>
+    </div>
+    <div>
+      <div class="film tall" data-film>
+        <video controls preload="metadata" playsinline poster="images/brand-film-poster.jpg">
+          <source src="media/rsy-brand-film.mp4" type="video/mp4">
+        </video>
+        <div class="ph"><div class="play"><svg width="26" height="26" viewBox="0 0 26 26"><path d="M8 5l14 8-14 8z" fill="#fff"/></svg></div><strong>RSY brand film</strong><small>French &amp; English subtitles</small></div>
+      </div>
+      <p class="cap">Our company film: the team, the lab and our values, subtitled in French and English.</p>
+    </div>
+  </div>
+  <div class="wrap figs">
+    <div><b>3</b><span>boat ranges</span></div>
+    <div><b>19</b><span>robotic moulding and finishing stations</span></div>
+    <div><b>1,177</b><span>hulls delivered last year</span></div>
+    <div><b>10</b><span>partners, one vote each</span></div>
+  </div>
+</section>
+
+<section class="band soft">
+  <div class="wrap">
+    <h2>Our philosophy and values</h2>
+    <p class="lead">Our model combines the strength of the group with operational efficiency. Each partner has a clear role and real freedom within it; the decisions that shape our future are voted by all ten.</p>
+    <div class="values">
+      <div class="val"><h3>Transparency</h3><p>We share every useful piece of information, with our team and with our dealers.</p></div>
+      <div class="val"><h3>Participation</h3><p>Everyone takes part in discussions and collective votes. Major commitments need 8 votes out of 10.</p></div>
+      <div class="val"><h3>Solidarity</h3><p>When one team faces a peak of work, the others step in. All for one, one for all.</p></div>
+      <div class="val"><h3>Trust and learning</h3><p>Mistakes are never hidden or used to blame; we study them calmly to work better together.</p></div>
+    </div>
+    <h3 style="margin-top:40px">Our crew</h3>
+    <div class="team">
+      <div class="pole"><h3>Management</h3><ul><li>Sara Rodriguez<small>Chief Executive Officer</small></li><li>Alexandre Ribeiro Martins<small>Managing Director</small></li></ul></div>
+      <div class="pole"><h3>Finance</h3><ul><li>Théo Coulongeat<small>Accounting, invoicing and compliance</small></li><li>Léo Hamdaoui-Duclocher<small>Cash, budgets and financial education</small></li></ul></div>
+      <div class="pole"><h3>Marketing</h3><ul><li>Erwan Calle<small>Brand strategy and acquisition</small></li><li>Samuel Guillot<small>Content, image and communication</small></li><li>Jürgen Herrenschmidt<small>CRM and analytics</small></li></ul></div>
+      <div class="pole"><h3>Logistics and production</h3><ul><li>Jules Laurent<small>Production planning</small></li><li>Corentin Gairoard<small>Supply and delivery flows</small></li><li>Romain Brulin<small>Stock, purchasing and shipping</small></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="band navy" id="fleet">
+  <div class="wrap">
+    <h2>The Musketeers range</h2>
+    <p class="lead">Three hulls, three characters. Each one is moulded from composite resin and finished with marine wood in our Toulon workshops. Watch each advertising spot in French with English subtitles.</p>
+    <div class="fleet" id="boats"></div>
+    <div class="adrow">
+      <div class="film tall" data-film>
+        <video controls preload="metadata" playsinline poster="images/hull-ad-poster.jpg">
+          <source src="media/rsy-hull-ad.mp4" type="video/mp4">
+        </video>
+        <div class="ph"><div class="play"><svg width="26" height="26" viewBox="0 0 26 26"><path d="M8 5l14 8-14 8z" fill="#fff"/></svg></div><strong>RSY hull ad</strong><small>French &amp; English subtitles</small></div>
+      </div>
+      <div>
+        <h3>Our hull, on screen</h3>
+        <p class="lead">Is your hull starting to look like a ghost ship? Our first ad shows, with a wink, why dealers and boatbuilders choose an RSY hull: solid, good-looking and built to go beyond the waves.</p>
+        <p class="cap">Format: 1-minute vertical video (4:5), subtitled in French and English. Channels: Instagram @rsy_hulls (feed and Reels), this website, and screens at our boat-show stand. Target: boat dealers and boatbuilders, plus the leisure sailors who buy from them.</p>
+      </div>
+    </div>
+    <div class="next"><b>D'Artagnan</b><span>The fourth musketeer is taking shape in our design office. Stay tuned.</span></div>
+  </div>
+</section>
+
+<section class="band" id="events">
+  <div class="wrap">
+    <h2>Our 2026 events</h2>
+    <p class="lead">Three flagship events to meet boatbuilders and naval architects, prove our hulls on the water and open naval engineering to the next generation.</p>
+    <div class="events" id="evlist"></div>
+  </div>
+</section>
+
+<section class="band soft" id="partners">
+  <div class="wrap">
+    <h2>Our commitments and partners</h2>
+    <p class="lead">RSY works with organisations that help us cut our environmental footprint and open naval engineering to everyone.</p>
+    <div class="partners">
+      <article class="art2">
+        <span class="tag2">Climate · Admitted November 2026</span>
+        <h3>Convention des Entreprises pour le Climat</h3>
+        <p>RSY has been admitted to the Provence Méditerranée programme of the Convention des Entreprises pour le Climat (CEC), following its application and selection interview. Over six collective sessions across eight months, our management and an internal partner will build a structured, measurable roadmap with other business leaders of the region.</p>
+        <ul>
+          <li>Opening session: 3 December 2026</li>
+          <li>Focus: eco-design, cleaner retrofitting, responsible industrial practices</li>
+          <li>Already in place: industrial-waste sorting and workshop energy savings</li>
+          <li>Under study: rooftop solar panels, local plastic and timber sourcing, cycling and car-sharing incentives</li>
+        </ul>
+      </article>
+      <article class="art2">
+        <span class="tag2">Diversity · Partner member</span>
+        <h3>Elles Bougent</h3>
+        <p>RSY is a partner member of the Elles Bougent association, which encourages girls to choose engineering and technical careers. Our women engineers and technicians volunteer as mentors, and we host a Girls in Naval Engineering Day for 40 middle- and high-school students at our Toulon site.</p>
+        <ul>
+          <li>Mentoring by RSY women engineers and technicians</li>
+          <li>At least two outreach actions each year</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="gallery">
+  <div class="wrap">
+    <h2>Gallery</h2>
+    <p class="lead">Life at the yard and on the water.</p>
+    <div class="gal" id="gal" tabindex="0" aria-label="Photo gallery"></div>
+    <div class="galbar"><button class="round" id="prev" aria-label="Previous photo">‹</button><button class="round" id="nextb" aria-label="Next photo">›</button></div>
+  </div>
+</section>
+
+<section class="band soft" id="press">
+  <div class="wrap">
+    <h2>Press</h2>
+    <p class="lead">Our releases and what the press says about RSY, for journalists, boatbuilders and partners.</p>
+    <div class="press" id="plist"></div>
+  </div>
+</section>
+
+<section class="band navy" id="social">
+  <div class="wrap social">
+    <div>
+      <h2>Join the crew online</h2>
+      <p class="lead">Behind-the-scenes videos, new launches and show dates: follow RSY on Instagram.</p>
+      <div class="nets" id="nets"></div>
+      <div class="btns"><button class="btn" id="share" type="button">Copy the link to this page</button></div>
+    </div>
+    <div class="card" style="color:var(--ink)">
+      <h3>Newsletter</h3>
+      <p style="color:var(--mute)">One email per season with our news and dealer offers.</p>
+      <form id="news" novalidate>
+        <label for="nmail">Email address<input id="nmail" type="email" required placeholder="name@company.com"></label>
+        <button class="btn red" type="submit">Subscribe</button>
+        <div class="ok" id="newsok" role="status">Thank you, you are on board.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="contact">
+  <div class="wrap contact">
+    <div>
+      <h2>Contact us</h2>
+      <p class="lead">Dealer, journalist or future partner? Our team answers within two working days.</p>
+      <div class="card">
+        <dl>
+          <dt>Address</dt><dd>RSY Shipyard, Port de Toulon, 83000 Toulon, France</dd>
+          <dt>Phone</dt><dd>+33 0 00 00 00 00</dd>
+          <dt>Email</dt><dd>contact@rsy-shipyard.com</dd>
+          <dt>Hours</dt><dd>Monday to Friday, 8:30 am to 6 pm</dd>
+        </dl>
+      </div>
+    </div>
+    <form id="cform" class="card" novalidate>
+      <h3>Send us a message</h3>
+      <div class="row2">
+        <label for="cname">Name<input id="cname" required autocomplete="name"></label>
+        <label for="ccomp">Company<input id="ccomp" autocomplete="organization"></label>
+      </div>
+      <div class="row2">
+        <label for="cmail">Email<input id="cmail" type="email" required autocomplete="email"></label>
+        <label for="cboat">Interested in<select id="cboat"><option>Aramis</option><option>Porthos</option><option>Athos</option><option>Becoming a dealer</option><option>Press enquiry</option></select></label>
+      </div>
+      <label for="cmsg">Message<textarea id="cmsg" required></textarea></label>
+      <button class="btn red" type="submit">Send message</button>
+      <div class="ok" id="cok" role="status">Thank you, our team will reply within two working days.</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div style="display:flex;gap:12px;align-items:center"><img src="logo.png" alt=""><span>RSY Shipyard SAS · Capital €2,000,000 · Toulon, France</span></div>
+    <span>Company project, SeaTech Toulon 2026. Addresses, phone numbers, events and press items illustrate the RSY business simulation.</span>
+  </div>
+</footer>
+
+<script>
+{
+const boats=[
+ {img:"images/athos-6m-feux.jpg",n:"Aramis",r:"Range A · Fishing",t:"The faithful companion of anglers",d:"An open, stable hull for recreational fishing on lakes, rivers and calm coastal waters. Simple to maintain, easy to tow and built to last.",f:["Wide, stable deck for casting","Robust composite hull with wood trim","Designed for an outboard engine"],p:"3,000",v:"spot-aramis",kind:"a"},
+ {img:"images/portos-16m.jpg",n:"Porthos",r:"Range B · Leisure cruising",t:"Generous and versatile, like its namesake",d:"Our best-seller for family outings at sea, on lakes and on rivers. A bowrider with room for everyone and a windscreen that keeps the spray away.",f:["Bow and stern seating for the family","Windscreen and console","At home on sea, lake or river"],p:"8,500",v:"spot-porthos",kind:"b"},
+ {img:"images/aramis-40m.jpg",fit:1,n:"Athos",r:"Range C · Premium cruising",t:"The noblest of the three",d:"A premium cruiser for days at sea and nights at anchor. Comfort comes first: a cabin, refined wood finishes and a hull that softens the chop.",f:["Cabin with berth","Hand-finished marine wood","Our most comfortable ride"],p:"21,000",v:"spot-athos",kind:"c"}];
+const hullSVG=k=>{
+ const cab=k==="c"?'<path d="M95 70 L112 46 L222 46 L238 70Z" fill="#fff"/><path d="M118 52 L165 52 L165 66 L108 66Z M172 52 L218 52 L230 66 L172 66Z" fill="#2c48a8"/>'
+  :k==="b"?'<path d="M140 70 L156 50 L205 50 L200 70Z" fill="#dfe8ff"/><path d="M160 55 L198 55 L196 66 L153 66Z" fill="#2c48a8"/>'
+  :'<rect x="235" y="52" width="16" height="18" fill="#D7263D"/><path d="M110 70 L118 18" stroke="#8aa0d8" stroke-width="3"/>';
+ return '<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect y="108" width="320" height="72" fill="#3a5bc2"/><path d="M0 112 q20-6 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" stroke="#9fb5ef" stroke-width="2" fill="none"/><ellipse cx="160" cy="112" rx="120" ry="7" fill="#0b1640" opacity=".35"/><path d="M45 70 L280 70 C270 92 255 104 232 106 L80 106 C64 101 52 88 45 70Z" fill="#fff"/><path d="M45 70 L280 70 L276 77 L48 77Z" fill="#142464"/><path d="M60 92 C130 97 200 97 268 90" stroke="#D7263D" stroke-width="3" fill="none"/>'+cab+'</svg>'};
+const film=(id,label)=>'<div class="film" data-film><video controls preload="metadata" playsinline><source src="media/'+id+'.mp4" type="video/mp4"><track kind="subtitles" srclang="en" label="English" src="media/'+id+'.en.vtt" default></video><div class="ph"><div class="play"><svg width="22" height="22" viewBox="0 0 26 26"><path d="M8 5l14 8-14 8z" fill="#fff"/></svg></div><strong>'+label+' advertising spot</strong><small>In French, English subtitles</small></div></div>';
+document.getElementById("boats").innerHTML=boats.map(b=>'<article class="boat"><div class="art">'+(b.img?'<img src="'+b.img+'" alt="'+b.n+' hull by RSY"'+(b.fit?' class="fit"':'')+' loading="lazy">':hullSVG(b.kind))+'</div><div class="body"><span class="tag">'+b.r+'</span><h3>'+b.n+'</h3><strong>'+b.t+'</strong><p style="color:var(--mute);margin:0">'+b.d+'</p><ul>'+b.f.map(x=>'<li>'+x+'</li>').join("")+'</ul>'+'<p class="price">Dealer price €'+b.p+' <span>excl. VAT, 2026</span></p></div></article>').join("");
+
+const events=[
+ {d:"B2B",m:"Trade show",n:"International Marine & Hull Manufacturing Exhibition",w:"International trade show",t:"Our pavilion presents RSY as a precision hull engineering partner to OEM shipyards, naval architects and fleet buyers: full-scale hull cutaways, laminate samples and scale models, daily 20-minute technical briefings by our engineers, and a private specification lounge to review blueprints and plan series deliveries."},
+ {d:"Sea",m:"Trial & forum",n:"RSY On-Water Sea Trial & Naval Architecture Forum",w:"Coastal venue, open water",t:"A full day to test our hulls for real. In the morning, a technical forum on hydrodynamics, fuel efficiency and durability with guest naval architects; in the afternoon, guided sea runs aboard our demonstration hulls, followed by one-to-one debriefs with our project managers. Sea-trial slots are booked in advance."},
+ {d:"Elles",m:"Bougent day",n:"\u201cElles Bougent\u201d Girls in Naval Engineering Day",w:"RSY site, Toulon",t:"As a partner of the Elles Bougent association, RSY welcomes 40 middle- and high-school girls for a day of immersion in naval engineering: testimonies from our women engineers, hands-on workshops (hull sketching and CAD, composite testing, a walk through the moulding and finishing workshop) and a mentored Q&A on studies and careers."}];
+document.getElementById("evlist").innerHTML=events.map(e=>'<div class="ev"><div class="d">'+e.d+'<small>'+e.m+'</small></div><div><h3>'+e.n+'</h3><p style="color:var(--mute);margin:0">'+e.t+'</p></div><div class="where">'+e.w+'</div></div>').join("");
+
+const scenes=[
+ ["Moulding a Porthos hull in the workshop","#d9e4ff","ws"],["Athos at anchor off the Îles d'Hyères","#9fc3ff","c"],["Sea trials in the bay of Toulon","#7fa6f0","b"],
+ ["Aramis ready for a fishing morning","#bcd3ff","a"],["Finishing the wood trim by hand","#e7eefc","ws"],["Our stand at the Toulon Boat Show","#c9d9fb","b"]];
+const pic=(c,k)=>k==="ws"?'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="300" fill="'+c+'"/><rect y="220" width="400" height="80" fill="#8fa3d1"/><g fill="#142464"><rect x="40" y="60" width="18" height="160"/><rect x="40" y="60" width="120" height="14"/><rect x="150" y="74" width="10" height="50"/></g><path d="M90 200 L330 200 C318 228 300 238 276 240 L126 240 C108 235 96 222 90 200Z" fill="#fff"/><path d="M90 200 L330 200 L326 208 L93 208Z" fill="#142464"/><circle cx="155" cy="128" r="10" fill="#D7263D"/></svg>'
+ :'<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="300" fill="'+c+'"/><path d="M0 170 C90 130 170 150 250 120 C320 95 360 120 400 110 L400 190 L0 190Z" fill="#5a78d1"/><rect y="185" width="400" height="115" fill="#2c48a8"/>'+hullSVG(k).replace('<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">','<g transform="translate(40 110)">').replace('<rect y="108" width="320" height="72" fill="#3a5bc2"/>','').replace('</svg>','</g>')+'</svg>';
+const gal=document.getElementById("gal");
+const photos=[["Aramis – 6 m, launch day","images/athos-6m-feux.jpg"],["Aramis – 6 m at speed","images/athos-6m-run.jpg"],["Aramis – 6 m in open water","images/athos-6m-sea.jpg"],["Aramis – 6 m at the pontoon","images/athos-6m-marina.jpg"],["Portos – 16 m","images/portos-16m.jpg"],["Portos – 16 m under way","images/portos-16m-sea.jpg"],["Portos – 16 m at anchor","images/portos-16m-city.jpg"],["Athos – 40 m","images/aramis-40m.jpg",1],["Athos – 40 m at sunset","images/aramis-40m-sunset.jpg"],["Athos – 40 m under way","images/aramis-40m-sea.jpg"]];
+gal.innerHTML=photos.map(p=>'<figure><div class="pic"><img src="'+p[1]+'" alt="'+p[0]+'"'+(p[2]?' class="fit"':'')+' loading="lazy"></div><figcaption>'+p[0]+'</figcaption></figure>').join("");
+const step=d=>{const f=gal.querySelector("figure");gal.scrollBy({left:d*((f?f.offsetWidth:300)+16),behavior:"smooth"})};
+document.getElementById("prev").addEventListener("click",()=>step(-1));
+document.getElementById("nextb").addEventListener("click",()=>step(1));
+gal.addEventListener("keydown",e=>{if(e.key==="ArrowRight")step(1);if(e.key==="ArrowLeft")step(-1)});
+
+const press=[
+ {d:"5 January 2026",h:"RSY sets sail with a new identity",l:"The Toulon shipyard unveils its RSY brand, its motto Beyond the Waves and the Musketeers range.",b:["RSY presents a renewed identity for its three boat ranges: Aramis for fishing, Porthos for leisure cruising and Athos for premium cruising. The anchor badge and the motto Beyond the Waves express the shipyard's ambition to take every sailor further, safely and in comfort.","The RSY brand has been registered with the French intellectual property office (INPI). A fourth model, D'Artagnan, is already in the design office."]},
+ {d:"25 November 2026",src:"The Maritime Gazette",h:"RSY sets sail: record revenue driven by Aramis, Athos and Porthos",l:"Revenue up more than 45% year on year, workshops at close to full capacity and a target above \u20ac10 million for 2026.",b:["Rodriguez ShipYard (RSY) has posted the best start to a financial year in its history. Driven by the launch of its new hull range, the Var-based supplier to boatbuilders has seen its revenue jump by more than 45% year on year.","Boatbuilders who buy from RSY are full of praise for the new Aramis, Athos and Porthos hulls, citing their careful finish, sturdiness, comfort at sea and on-time delivery. As a result, orders are already pouring in for the spring season. \u201cOur boatbuilding customers wanted stronger, more comfortable hulls at a fair price. With the Three Musketeers, we gave them exactly that,\u201d the management explains. The premium hull in particular is exceeding expectations: with a margin above 50%, it has become the company's new profit engine.","To keep up with demand, RSY is now running at close to 100% of its production capacity. The company has expanded its sales force (+33% sales representatives), strengthened its administrative team and secured its supply chain with a 400-tonne plastic contract on very favourable terms. As a sign of its partners' confidence, the bank has granted it \u20ac800,000 in financing to support its growth.","Management has no intention of stopping there. With demand expected to peak in the second quarter at 45% above the industry's production capacity, RSY has built up its inventory in advance and says it is ready to supply the boatbuilders its competitors will be unable to serve. Its stated goal is revenue above \u20ac10 million in 2026, up from \u20ac6.7 million last year, an increase of nearly 50%.","\u201cWe want to become the partner of choice for boatbuilders across the Mediterranean.\u201d Industry analysts have already named RSY one of the companies to watch closely in 2026."]},
+ {d:"25 November 2026",src:"The Maritime Gazette",h:"RSY: the Var-based brand winning over the public and professionals alike",l:"87% of Var residents view RSY favourably, and boatbuilders give its hulls a 9/10 satisfaction score.",b:["In just a few months, Rodriguez ShipYard (RSY) has become a name that matters in shipbuilding. Boatbuilders, suppliers, bankers and the general public: The Maritime Gazette asked them what they think of the Toulon-based hull supplier.","In the Var, RSY has become a small source of regional pride. According to a survey of coastal residents, 87% have a positive image of the company and describe it as \u201cinnovative\u201d and \u201creliable\u201d. Its recent hires, in sales and administration, have reinforced its image as a company that creates local jobs. On the pontoons of Toulon harbour, many boat owners now ask whether their boat is \u201cbuilt on an RSY hull\u201d.","Boatbuilders, RSY's direct customers, tell the same story. \u201cThe Aramis, Athos and Porthos hulls arrive on time, are perfectly finished, and our own customers notice the difference from their very first outing at sea,\u201d says the head of a boatyard in La Seyne-sur-Mer. Several boatyards say they have already increased their orders for the spring.","Financial and industrial partners share this enthusiasm. A raw-materials supplier praises \u201ca reliable customer that commits for the long term\u201d. On the banking side, lenders highlight the strength of the company's development plan, which justified \u20ac800,000 in financing.","Even competitors acknowledge what has been achieved. \u201cThey have pulled ahead in the premium segment, and we will have to respond,\u201d admits the sales director of a rival yard, speaking on condition of anonymity. \u201cRSY is becoming the benchmark for quality hulls in the Mediterranean,\u201d concludes a marine industry analyst."]},
+ {d:"25 November 2026",src:"EcoCap",h:"Greener shipbuilding: Rodriguez Ship Yard charts a new course",l:"Now admitted to the Convention des Entreprises pour le Climat programme, RSY is reshaping its environmental strategy, from waste and raw materials to energy and staff mobility.",b:["From industrial waste and raw-material sourcing to renewable energy and employee mobility, Rodriguez Ship Yard is reshaping its environmental strategy. Now admitted to the Convention des Entreprises pour le Climat (CEC) programme, the Toulon-based hull manufacturer faces the challenge of turning its commitments into measurable action.","The company has already introduced industrial-waste sorting and taken steps to improve energy efficiency, and now wants to connect these efforts to a longer-term strategy. Plastic offcuts from hull production are a central concern: RSY aims to limit avoidable material losses and explore recovery and recycling solutions. It also wants better traceability for timber and to favour suppliers with responsible forest-management practices, as well as more local and regional sources for plastic, timber and industrial supplies.","Energy and mobility are the other focus areas. RSY is considering rooftop solar panels to generate renewable electricity, subject to technical feasibility and investment costs, and is looking at a financial incentive for employees who cycle to work, alongside support for car-sharing.","Through six collective sessions over eight months, starting on 3 December 2026, the CEC Provence Méditerranée programme will help RSY build a structured roadmap focused on eco-design, cleaner retrofitting and more responsible industrial practices. EcoCap notes that progress will have to be measured with concrete indicators: waste recovered, electricity consumption, the origin of raw materials and the uptake of alternative commuting options."]}];
+document.getElementById("plist").innerHTML=press.map(p=>'<article class="art2"><time>'+p.d+(p.src?' \u00b7 '+p.src:'')+'</time><h3>'+p.h+'</h3><p>'+p.l+'</p><details><summary>'+(p.src?'Read the full article':'Read the full release')+'</summary>'+p.b.map(x=>'<p>'+x+'</p>').join("")+'</details></article>').join("");
+
+const ic={ig:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>',
+ li:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4H4zM4 10h4v10H4zM10 10h4v1.6c.6-1 1.8-1.9 3.6-1.9 3 0 4.4 1.9 4.4 5.3V20h-4v-4.6c0-1.6-.6-2.5-1.9-2.5s-2.1.9-2.1 2.5V20h-4z"/></svg>',
+ yt:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1c.3-1.3.4-2.5.4-3.8s-.1-2.5-.4-3.8zM10 15V9l5.2 3z"/></svg>',
+ fb:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8V6.5c0-.8.2-1.3 1.4-1.3H17V2.1c-.3 0-1.3-.1-2.5-.1C12 2 10.4 3.5 10.4 6.2V8H8v3.5h2.4V22H14V11.5h2.7l.4-3.5z"/></svg>'};
+const nets=[["ig","Instagram","@rsy_hulls","https://www.instagram.com/rsy_hulls/"]];
+document.getElementById("nets").innerHTML=nets.map(n=>'<a class="net" href="'+n[3]+'" target="_blank" rel="noopener">'+ic[n[0]]+'<span>'+n[1]+'<small>'+n[2]+'</small></span></a>').join("");
+
+document.querySelectorAll("[data-film]").forEach(f=>{
+ const v=f.querySelector("video"),s=f.querySelector("source");
+ const miss=()=>f.classList.add("missing");
+ s.addEventListener("error",miss);v.addEventListener("error",miss);
+ setTimeout(()=>{if(v.readyState===0&&v.networkState===3)miss()},1500);
+});
+const sh=document.getElementById("share");
+sh.addEventListener("click",()=>{const u=location.href.split("#")[0];
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(()=>{sh.textContent="Link copied"},()=>{sh.textContent=u})}else sh.textContent=u});
+const okForm=(id,ok)=>{const f=document.getElementById(id);f.addEventListener("submit",e=>{e.preventDefault();
+ const bad=[...f.querySelectorAll("[required]")].find(i=>!i.value.trim()||(i.type==="email"&&!/^\S+@\S+\.\S+$/.test(i.value)));
+ if(bad){bad.focus();bad.setCustomValidity("Please fill in this field correctly");bad.reportValidity();bad.setCustomValidity("");return}
+ document.getElementById(ok).classList.add("show");f.reset()})};
+okForm("news","newsok");okForm("cform","cok");
+}
+</script>
+</body>
+</html>
